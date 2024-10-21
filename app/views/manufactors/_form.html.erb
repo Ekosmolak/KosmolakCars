@@ -1,0 +1,27 @@
+<%= form_with(model: manufactor) do |form| %>
+  <% if manufactor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(manufactor.errors.count, "error") %> prohibited this manufactor from being saved:</h2>
+
+      <ul>
+        <% manufactor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :manufactorId, style: "display: block" %>
+    <%= form.number_field :manufactorId %>
+  </div>
+
+  <div>
+    <%= form.label :manufactor, style: "display: block" %>
+    <%= form.text_field :manufactor %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

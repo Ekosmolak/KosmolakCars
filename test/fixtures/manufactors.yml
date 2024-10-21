@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufactorId: 1
+  manufactor: MyString
+
+two:
+  manufactorId: 1
+  manufactor: MyString
