@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vehicleId: 1
+  manufactorId: 1
+  model: MyString
+  colour: MyString
+  price: 9.99
+  odometer: 1
+  vehicleType: MyString
+
+two:
+  vehicleId: 1
+  manufactorId: 1
+  model: MyString
+  colour: MyString
+  price: 9.99
+  odometer: 1
+  vehicleType: MyString
