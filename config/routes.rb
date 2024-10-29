@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "about/index"
   resources :staffs
   resources :vehicles
   resources :manufacturers
