@@ -8,6 +8,7 @@ class StaffsController < ApplicationController
 
   # GET /staffs/1 or /staffs/1.json
   def show
+    @staff = Staff.find(params[:id])
   end
 
   # GET /staffs/new

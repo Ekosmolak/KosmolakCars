@@ -32,6 +32,7 @@ end
 
   Vehicle.create(
     manufacturer_id: selected_manufacturer.id,
+    #manufacturer: selected_manufacturer.manufacturer,
     model: Faker::Vehicle.model,
     colour: Faker::Vehicle.color,
     price: Faker::Commerce.price(range: 9999.00..100000.00).to_f,

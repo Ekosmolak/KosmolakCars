@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "welcome#index"
   get "about/index"
   resources :staffs
   resources :vehicles
@@ -11,8 +12,11 @@ Rails.application.routes.draw do
 
   get "about", to: "about#index", as: :about
 
-  get "manufacturer", to: "manufacturer#index", as: :manufacturers
-  get "manufacturer/:id", to: "manufacturer#show", as: :manufacturer
+  get "/manufacturer", to: "manufacturer#index"
+  get "/manufacturer/:id", to: "manufacturer#show"
+
+  get "/vehicle", to: "vehicle#index"
+  get "/vehicle/:id", to: "manufacturer#show"
 
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

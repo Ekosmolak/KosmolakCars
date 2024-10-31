@@ -8,6 +8,7 @@ class ManufacturersController < ApplicationController
 
   # GET /manufacturers/1 or /manufacturers/1.json
   def show
+    @manufacturer = Manufacturer.find(params[:id])
   end
 
   # GET /manufacturers/new
