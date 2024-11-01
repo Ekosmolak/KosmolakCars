@@ -3,7 +3,18 @@ class ManufacturersController < ApplicationController
 
   # GET /manufacturers or /manufacturers.json
   def index
-    @manufacturers = Manufacturer.all
+    if params[:search].present?
+      @manufacturer = Manufacturer.where('manufacturer LIKE ?', "%#{params[:search]}%").first
+
+      if @manufacturer
+        redirect_to manufacturer_path(@manufacturer) and return
+      else
+        @manufacturers = Manufacturer.all
+        flash.now[:alert] = "No manufacturer found with the name '#{params[:search]}'."
+      end
+    else
+      @manufacturers = Manufacturer.all
+    end
   end
 
   # GET /manufacturers/1 or /manufacturers/1.json

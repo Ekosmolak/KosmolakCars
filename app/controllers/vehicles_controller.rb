@@ -4,6 +4,11 @@ class VehiclesController < ApplicationController
   # GET /vehicles or /vehicles.json
   def index
     @vehicles = Vehicle.all
+  @vehicle_models = Vehicle.select(:model).distinct
+
+  if params[:model].present?
+    @vehicles = @vehicles.where(model: params[:model])
+  end
   end
 
   # GET /vehicles/1 or /vehicles/1.json

@@ -4,6 +4,12 @@
 
 <h1>Vehicles</h1>
 
+<%= form_with url: vehicles_path, method: :get, local: true do %>
+  <%= label_tag :model, 'Select a Vehicle Model:' %>
+  <%= select_tag :model, options_for_select(@vehicle_models.map { |v| [v.model, v.model] }, params[:model]), prompt: 'Choose a model' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
 <div id="vehicles">
   <% @vehicles.each do |vehicle| %>
     <%= render vehicle %>

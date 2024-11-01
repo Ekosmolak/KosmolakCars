@@ -4,6 +4,17 @@
 
 <h1>Manufacturers</h1>
 
+<%= form_with url: manufacturers_path, method: :get, local: true do %>
+  <%= label_tag :search, 'Search by Manufacturer Name:' %>
+  <%= text_field_tag :search, params[:search], placeholder: "Enter manufacturer name" %>
+  <%= submit_tag 'Search' %>
+
+<% end %>
+
+<% if flash[:alert] %>
+  <p style="color: red;"><%= flash[:alert] %></p>
+<% end %>
+
 <div id="manufacturers">
   <% @manufacturers.each do |manufacturer| %>
     <%= render manufacturer %>
