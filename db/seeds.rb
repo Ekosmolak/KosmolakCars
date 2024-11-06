@@ -24,7 +24,7 @@ vehicles = CSV.parse(csv_data, headers: true, encoding: 'iso-8859-1')
 
 vehicles.each do |vehicle|
   Vehicle.create(
-    manufacturer: all_manufacturers.sample,
+    manufacturer_id: all_manufacturers.sample.id,
     price: vehicle['Price'],
     model: vehicle['Model'],
     odometer: vehicle['Mileage'],
