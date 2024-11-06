@@ -1,41 +1,42 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require "csv"
 
 Vehicle.delete_all
 Staff.delete_all
 Manufacturer.delete_all
 
-dealership_positions = ["Sales", "IT", "Receptionist", "Management"]
+dealership_positions = [ "Sales", "IT", "Receptionist", "Management" ]
 
-manufacturers = []
+csv_file1 = Rails.root.join('db/manufacturerss.csv')
+csv_data1 = File.read(csv_file1)
+manufacturers = CSV.parse(csv_data1, headers: true, encoding: 'iso-8859-1')
+
+manufacturers.each do |manufacturer|
+  Manufacturer.create(
+    manufacturer: manufacturer['Brand']
+  )
+end
+
+all_manufacturers = Manufacturer.all
+
+csv_file = Rails.root.join('db/inventoryy.csv')
+csv_data = File.read(csv_file)
+vehicles = CSV.parse(csv_data, headers: true, encoding: 'iso-8859-1')
+
+vehicles.each do |vehicle|
+  Vehicle.create(
+    manufacturer: all_manufacturers.sample,
+    price: vehicle['Price'],
+    model: vehicle['Model'],
+    odometer: vehicle['Mileage'],
+    vehicle_type: vehicle['Body'],
+    colour: Faker::Vehicle.color
+  )
+end
 
 20.times do
   Staff.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     position: dealership_positions.sample
-  )
-
-  manufacturers << Manufacturer.create(manufacturer: Faker::Vehicle.manufacturer)
-end
-
-90.times do
-
-  selected_manufacturer = manufacturers.sample
-
-  Vehicle.create(
-    manufacturer_id: selected_manufacturer.id,
-    model: Faker::Vehicle.model,
-    colour: Faker::Vehicle.color,
-    price: Faker::Commerce.price(range: 9999.00..100000.00).to_f,
-    odometer: Faker::Number.between(from: 1000, to: 250000),
-    vehicle_type: Faker::Vehicle.car_type
   )
 end
